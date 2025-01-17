@@ -12,11 +12,13 @@
     "jsx": "react-jsx",  // Использование JSX синтаксиса для React 17 и выше
     "resolveJsonModule": true,  // Разрешить импорты JSON файлов
     "skipDefaultLibCheck": true,  // Пропустить проверку стандартных библиотек
-    "baseUrl": ".",  // Базовая директория для разрешения модулей
+    "baseUrl": "src",  // Базовая директория для разрешения модулей
     "paths": {
-      "@components/*": ["src/components/*"],  // Пример настройки для алиасов
-      "@utils/*": ["src/utils/*"]
-    }
+      "components/*": ["components/*"],
+      "pages/*": ["pages/*"],
+      "styles/*": ["styles/*"],
+      "ui/*": ["ui/*"],
+    },  // Псевдонимы для путей
   },
   "include": [
     "src/**/*",  // Включить все файлы в папке src
