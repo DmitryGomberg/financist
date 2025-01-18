@@ -33,7 +33,8 @@ export const GlobalStyles = createGlobalStyle`
         color: ${colors.blue};
         line-height: 1;
         font-family: Jura, Arial, Helvetica, sans-serif;
-        font-size: $fontSize;
+        font-size: 16px;
+        font-weight: 900;
         line-height: 150%;
         //text-rendering: optimizeLegibility;
         -ms-text-size-adjust: 100%;
