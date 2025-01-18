@@ -7,6 +7,7 @@
     "esModuleInterop": true,  // Позволяет импортировать CommonJS модули как ES6
     "moduleResolution": "node",  // Метод разрешения модулей (для Node.js)
     "module": "ESNext",  // Модульная система
+    "typeRoots": ["./node_modules/@types", "./src"],
     "strict": true,  // Включить все строгие проверки типов
     "noImplicitAny": true,  // Запретить использование типа `any`
     "jsx": "react-jsx",  // Использование JSX синтаксиса для React 17 и выше
@@ -17,6 +18,7 @@
       "components/*": ["components/*"],
       "pages/*": ["pages/*"],
       "styles/*": ["styles/*"],
+      "assets/*": ["assets/*"],
       "ui/*": ["ui/*"],
     },  // Псевдонимы для путей
   },

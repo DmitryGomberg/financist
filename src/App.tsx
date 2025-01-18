@@ -1,19 +1,17 @@
 import React from 'react';
-import {UiButton} from "ui/Button";
-import {AcUnit} from "@mui/icons-material";
-import {UiCheckbox} from "ui/Checkbox";
-import {UiDropdown} from "ui/Dropdown";
-import {UiInput} from "ui/Input";
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import {HomePage} from "pages/home";
+import {Nav} from "components/nav";
+
 
 function App() {
    return (
-      <>
-         <UiButton label={'Войти'} contentLeft={<AcUnit />} />
-         <UiCheckbox label={'Одобряю'} checked onChange={()=>{}} />
-         <UiDropdown items={["gthdsq", 'fdsf', 'fsdf']} onSelect={(item)=>{
-            console.log(item)}} />
-         <UiInput placeholder={'Некоторый текст'} label={'Воадлоыдв'} onChange={()=>{}} />
-      </>
+      <Router>
+         <Nav />
+         <Routes>
+            <Route path="/" element={<HomePage />} />
+         </Routes>
+      </Router>
    );
 }
 

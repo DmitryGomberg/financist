@@ -6,7 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="30fed7f8-a920-4bd7-91f6-fcc318e8c929" name="Changes" comment="dropdown and checkbox">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/Radio/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/Radio/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/Radio/styled.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/Radio/styled.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,22 +36,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "D:/Фина-Проминижиниринг/financist/src/ui/Radio",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.keymap",
-    "ts.external.directory.path": "D:\\Фина-Проминижиниринг\\financist\\node_modules\\typescript\\lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Фина-Проминижиниринг/financist/src/assets&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;D:\\Фина-Проминижиниринг\\financist\\node_modules\\typescript\\lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Фина-Проминижиниринг\financist\src\assets" />
+      <recent name="D:\Фина-Проминижиниринг\financist\src\ui\Radio" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Фина-Проминижиниринг\financist\src" />
+    </key>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -74,7 +88,10 @@
       <workItem from="1737142875356" duration="2771000" />
       <workItem from="1737145679342" duration="892000" />
       <workItem from="1737146589350" duration="22000" />
-      <workItem from="1737186432327" duration="11824000" />
+      <workItem from="1737186432327" duration="13365000" />
+      <workItem from="1737213857117" duration="1263000" />
+      <workItem from="1737215142449" duration="119000" />
+      <workItem from="1737215272726" duration="5279000" />
     </task>
     <task id="LOCAL-00001" summary="dropdown and checkbox">
       <option name="closed" value="true" />
