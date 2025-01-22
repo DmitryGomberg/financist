@@ -6,13 +6,14 @@ import {
    UiDropdownItem,
    UiDropdownLabel,
    UiDropdownList,
-   UiDropdownMain
+   UiDropdownMain,
 } from './styled';
 
 type UiDropdownProps = {
    items: string[];
    onSelect: (item: string) => void;
    label?: string;
+   placeholder?: string
 };
 
 export const UiDropdown: FC<UiDropdownProps> = (props) => {
@@ -34,16 +35,16 @@ export const UiDropdown: FC<UiDropdownProps> = (props) => {
          {props.label && <UiDropdownLabel>{props.label}</UiDropdownLabel>}
          <UiDropdownInner>
             <UiDropdownMain onClick={toggleDropdown} isOpen={isOpen}>
-               {selectedItem || 'Select an item'}
+               {selectedItem || props.placeholder || 'Выберите вариант из списка'}
                <ArrowDropDown />
             </UiDropdownMain>
             <UiDropdownList isOpen={isOpen}>
-                  {props.items.map((item) => (
-                     <UiDropdownItem key={item} onClick={() => handleItemClick(item)}>
-                        {item}
-                     </UiDropdownItem>
-                  ))}
-               </UiDropdownList>
+               {props.items.map((item) => (
+                  <UiDropdownItem key={item} onClick={() => handleItemClick(item)}>
+                     {item}
+                  </UiDropdownItem>
+               ))}
+            </UiDropdownList>
          </UiDropdownInner>
       </UiDropdownContainer>
    );

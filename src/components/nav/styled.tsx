@@ -10,8 +10,12 @@ export const NavContainer = styled(Container)`
     }
 `;
 export const NavLogo = styled.div`
+    margin-right: auto;
     & a{
         height: 50px;
+        @media (max-width: 768px){
+            height: 40px;
+        }
     }
     & img{
         height: 100%;
@@ -22,6 +26,9 @@ export const NavCompany = styled.div`
     text-align: right;
     padding-right: 8px;
     font-weight: 400;
+    @media (max-width: 768px){
+        display: none;
+    }
 `;
 export const NavSearch = styled.div`
     padding: 8px;

@@ -83,4 +83,9 @@ export const GlobalStyles = createGlobalStyle`
         font-weight: inherit;
         font-size: inherit;
     }
+
+    ::selection {
+        background-color: ${colors.accentGreen};
+        color: ${colors.light};
+    }
 `;
