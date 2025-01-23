@@ -4,7 +4,6 @@ import { RadioCheckboxWrapper, Title } from '../../styled';
 import { UiButton } from 'ui/Button';
 import { UiInput } from 'ui/Input';
 import { UiInputSum } from 'ui/inputSum';
-import { UiInputDate } from 'ui/inputDate';
 import { UiRadio } from 'ui/Radio';
 import { PayConditions } from './payConditions';
 import { EDateType } from 'utils';
@@ -65,7 +64,8 @@ export const EditContractPage: FC = () => {
                   placeholder={'Введите значение'} />
          <EditContractPageLine>
             <UiInputSum value={sum} onChange={(text) => setSum(text)} label={'Сумма договора'} />
-            <UiInputDate value={date} onChange={(text) => setDate(text)} label={'Дата составления договора'} />
+            <UiInput type={'date'} value={date} onChange={(text) => setDate(text)}
+                     label={'Дата составления договора'} />
          </EditContractPageLine>
          <EditContractPageLine>
             <UiInput onChange={(text) => setTimeDelivery(text)} value={timeDelivery} label={'Срок поставки'}

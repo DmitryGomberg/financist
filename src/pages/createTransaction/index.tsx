@@ -3,7 +3,6 @@ import { CreateTransactionPageContainer, CreateTransactionPageLine, CreateTransa
 import { RadioCheckboxWrapper, Subtitle, Title } from '../../styled';
 import { UiRadio } from 'ui/Radio';
 import { UiDropdown } from 'ui/Dropdown';
-import { UiInputDate } from 'ui/inputDate';
 import { UiInputSum } from 'ui/inputSum';
 import { UiInput } from 'ui/Input';
 import { UiButton } from 'ui/Button';
@@ -37,7 +36,7 @@ export const CreateTransactionPage: FC = () => {
          <UiDropdown items={['fsdf', 'dsf']} onSelect={(item) => setCategory(item)}
                      placeholder={'Выберите вариант из списка'} label={'Выберите договор'} />
          <CreateTransactionPageLine>
-            <UiInputDate value={date} onChange={(text) => setDate(text)} label={'Дата'} />
+            <UiInput type={'date'} value={date} onChange={(text) => setDate(text)} label={'Дата'} />
             <UiInputSum value={sum} onChange={(val) => {
                setSum(val);
             }} label={'Сумма'} />

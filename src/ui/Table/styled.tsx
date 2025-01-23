@@ -4,7 +4,6 @@ import { colors } from 'styles/vars';
 export const UiTableContainer = styled.table`
 	width: 100%;
 	border-collapse: collapse;
-	overflow: hidden;
 `;
 
 export const UiTableHeader = styled.th`
@@ -15,6 +14,8 @@ export const UiTableHeader = styled.th`
 `;
 
 export const UiTableRow = styled.tr`
+	position: relative;
+
 	&:nth-child(even) {
 		background-color: #f9f9f9;
 	}

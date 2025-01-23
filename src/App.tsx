@@ -6,11 +6,10 @@ import {
    CreateTransactionPage,
    EditContractPage,
    EditTransactionPage,
-   JournalPage,
+   JournalPage, AnalyticsPage, NotificationsPage,
 } from 'pages';
 import { Aside, Nav } from 'components';
 import { AppContainer, AppMain } from './styled';
-
 
 function App() {
    return (
@@ -26,6 +25,8 @@ function App() {
                   <Route path="/dogovor/:id/edit" element={<EditContractPage />} />
                   <Route path="/dogovor/:id" element={<ContractPage />} />
                   <Route path="/journal" element={<JournalPage />} />
+                  <Route path="/analytics" element={<AnalyticsPage />} />
+                  <Route path="/notifications" element={<NotificationsPage />} />
                </Routes>
             </AppMain>
          </AppContainer>

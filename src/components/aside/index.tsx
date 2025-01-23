@@ -10,10 +10,7 @@ export const Aside: FC = () => {
       <AsideContainer>
          <AsideLinks>
             <AsideLink active>
-               <Link to="">Аналитика за месяц</Link>
-            </AsideLink>
-            <AsideLink>
-               <Link to="">Аналитика за год</Link>
+               <Link to="/analytics">Аналитика</Link>
             </AsideLink>
             <AsideLink>
                <Link to="">Договоры</Link>
@@ -22,7 +19,7 @@ export const Aside: FC = () => {
                <Link to="/journal">Журнал</Link>
             </AsideLink>
             <AsideLink>
-               <Link to="">Уведомления
+               <Link to="/notifications">Уведомления
                   <span>2</span>
                </Link>
             </AsideLink>
