@@ -61,4 +61,5 @@ export const RadioCheckboxWrapper = styled.div`
 	display: flex;
 	flex-direction: column;
 	gap: 5px;
+	align-items: flex-start;
 `;

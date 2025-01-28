@@ -2,9 +2,10 @@ import { FC } from 'react';
 import logo from 'assets/logo.png';
 import { NotificationsNone, Search } from '@mui/icons-material';
 import { NavCompany, NavContainer, NavLogo, Navnotifications, NavSearch } from 'components/nav/styled';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 export const Nav: FC = () => {
+   const navigate = useNavigate();
    return (
       <NavContainer>
          <NavLogo>
@@ -16,7 +17,7 @@ export const Nav: FC = () => {
          <NavSearch>
             <Search />
          </NavSearch>
-         <Navnotifications>
+         <Navnotifications onClick={() => navigate('/notifications')}>
             <NotificationsNone />
             <span>2</span>
          </Navnotifications>

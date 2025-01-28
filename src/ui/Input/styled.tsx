@@ -8,8 +8,8 @@ export const UiInputContainer = styled.div`
 	max-width: 730px;
 	width: 100%;
 `;
-export const UiInputLabel = styled.div`
-	color: ${colors.blueDark};
+export const UiInputLabel = styled.div<{error?: boolean}>`
+	color: ${({error}) => error ? 'red' : colors.blueDark};
 `;
 export const UiInputMain = styled.input`
 	padding: 3px 15px;

@@ -3,7 +3,6 @@ import { EditTransactionPageContainer, EditTransactionPageLine, EditTransactionP
 import { RadioCheckboxWrapper, Subtitle, Title } from '../../styled';
 import { UiRadio } from 'ui/Radio';
 import { UiDropdown } from 'ui/Dropdown';
-import { UiInputSum } from 'ui/inputSum';
 import { UiInput } from 'ui/Input';
 import { UiButton } from 'ui/Button';
 import { ETransactionType } from '../../utils/enums';
@@ -36,7 +35,7 @@ export const EditTransactionPage: FC = () => {
                      placeholder={'Выберите вариант из списка'} label={'Выберите договор'} />
          <EditTransactionPageLine>
             <UiInput type={'date'} value={date} onChange={(text) => setDate(text)} label={'Дата'} />
-            <UiInputSum value={sum} onChange={(val) => {
+            <UiInput type={'number'} value={sum} onChange={(val) => {
                setSum(val);
             }} label={'Сумма'} />
             <UiInput onChange={(text) => setDescr(text)} value={descr} label={'Примечание'}

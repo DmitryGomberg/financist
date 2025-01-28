@@ -1,22 +1,22 @@
 import { FC, useState } from 'react';
 import { Subtitle } from 'styled';
-import { UiButton, UiCheckbox, UiDropdown, UiInput } from 'ui';
+import { UiButton, UiInput, UiCheckbox } from 'ui';
 import { FilterBlock, FilterContainer, FilterLabel, FilterLine } from '../styled';
 
-export const FilterTransactions: FC = () => {
-   let [transactionTypeGet, setTransactionTypeGet] = useState<boolean>(true);
-   let [transactionTypePost, setTransactionTypePost] = useState<boolean>(true);
+export const FilterContracts: FC = () => {
    let [dateFrom, setDateFrom] = useState('');
    let [dateTo, setDateTo] = useState('');
-   let [category, setCategory] = useState<string>('');
+   let [isDrafted, setIsDrafted] = useState(false);
+   let [isSigned, setIsSigned] = useState(false);
+   let [isClosed, setIsClosed] = useState(false);
 
    const sendRes = () => {
       console.log(
-         transactionTypeGet,
-         transactionTypePost,
          dateFrom,
          dateTo,
-         category,
+         isDrafted,
+         isSigned,
+         isClosed,
       );
    };
 
@@ -24,13 +24,6 @@ export const FilterTransactions: FC = () => {
       <FilterContainer>
          <Subtitle>Фильтровать по</Subtitle>
          <FilterLine>
-            <FilterBlock>
-               <FilterLabel>по типу:</FilterLabel>
-               <UiCheckbox label={'Поступления'} checked={transactionTypeGet}
-                           onChange={() => setTransactionTypeGet(!transactionTypeGet)} />
-               <UiCheckbox label={'Затраты'} checked={transactionTypePost}
-                           onChange={() => setTransactionTypePost(!transactionTypePost)} />
-            </FilterBlock>
             <FilterBlock>
                <FilterLabel>по времени:</FilterLabel>
                <div>
@@ -47,9 +40,16 @@ export const FilterTransactions: FC = () => {
                </div>
             </FilterBlock>
             <FilterBlock>
-               <FilterLabel>по договору:</FilterLabel>
-               <UiDropdown items={['fsdf', 'dsf']} onSelect={(item) => setCategory(item)}
-                           placeholder={'Выберите вариант из списка'} label={''} />
+               <FilterLabel>по состоянию:</FilterLabel>
+               <div>
+                  <UiCheckbox label={'Составлен'} checked={isDrafted} onChange={() => setIsDrafted(!isDrafted)} />
+               </div>
+               <div>
+                  <UiCheckbox label={'Подписан'} checked={isSigned} onChange={() => setIsSigned(!isSigned)} />
+               </div>
+               <div>
+                  <UiCheckbox label={'Закрыт'} checked={isClosed} onChange={() => setIsClosed(!isClosed)} />
+               </div>
             </FilterBlock>
          </FilterLine>
          <UiButton label={'Применить'} onClick={sendRes} />

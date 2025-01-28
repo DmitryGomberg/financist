@@ -8,20 +8,14 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/aside/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/aside/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/filters/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/filters/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/filters/styled.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/filters/styled.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/filters/transactions/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/filters/transactions/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/nav/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/nav/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/createContract/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/createContract/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/createTransaction/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/createTransaction/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/editContract/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/editContract/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/editTransaction/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/editTransaction/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/journal/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/journal/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/journal/styled.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/journal/styled.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styled.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/styled.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ui/Table/styled.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/Table/styled.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/inputDate/index.tsx" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,7 +48,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "master",
-    "last_opened_file_path": "D:/Фина-Проминижиниринг/financist/src/pages",
+    "last_opened_file_path": "D:/Фина-Проминижиниринг/financist/src/components/filters",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -67,6 +61,7 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Фина-Проминижиниринг\financist\src\components\filters" />
       <recent name="D:\Фина-Проминижиниринг\financist\src\pages" />
       <recent name="D:\Фина-Проминижиниринг\financist\src\ui" />
       <recent name="D:\Фина-Проминижиниринг\financist\src\assets" />
@@ -116,6 +111,7 @@
       <workItem from="1737524169055" duration="4000" />
       <workItem from="1737524284610" duration="14935000" />
       <workItem from="1737557397877" duration="639000" />
+      <workItem from="1737611183877" duration="3634000" />
     </task>
     <task id="LOCAL-00001" summary="dropdown and checkbox">
       <option name="closed" value="true" />

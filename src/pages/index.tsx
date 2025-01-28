@@ -6,3 +6,4 @@ export * from './contractPage';
 export * from './journal';
 export * from './analytics';
 export * from './notifications';
+export * from './contracts';

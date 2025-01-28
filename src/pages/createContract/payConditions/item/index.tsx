@@ -11,9 +11,10 @@ type PayConditionsItemProps = {
    stage: IStageTypes;
    updateStage: (id: number, updatedStage: Partial<IStageTypes>) => void;
    deleteStage: (id: number) => void;
+   error?: boolean;
 };
 
-export const PayConditionsItem: FC<PayConditionsItemProps> = ({ stage, updateStage, deleteStage }) => {
+export const PayConditionsItem: FC<PayConditionsItemProps> = ({ stage, updateStage, deleteStage, error }) => {
    const handleChange = (name: string, value: string | EDateType) => {
       updateStage(stage.id, { [name]: value });
    };
@@ -26,6 +27,7 @@ export const PayConditionsItem: FC<PayConditionsItemProps> = ({ stage, updateSta
             value={stage.name}
             onChange={(value) => handleChange('name', value)}
             placeholder="Название этапа"
+            validated={error}
          />
          <UiInput
             type="number"
@@ -33,6 +35,7 @@ export const PayConditionsItem: FC<PayConditionsItemProps> = ({ stage, updateSta
             value={stage.percent.toString()}
             onChange={(value) => handleChange('percent', value)}
             placeholder="Процент"
+            validated={error}
          />
          <UiInput
             type="number"
@@ -40,6 +43,7 @@ export const PayConditionsItem: FC<PayConditionsItemProps> = ({ stage, updateSta
             value={stage.time.toString()}
             onChange={(value) => handleChange('time', value)}
             placeholder="Время"
+            validated={error}
          />
          <RadioCheckboxWrapper>
             <UiRadio

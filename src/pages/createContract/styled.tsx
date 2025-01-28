@@ -8,7 +8,6 @@ export const CreateContractPageContainer = styled.div`
 	align-items: flex-start;
 	gap: 15px;
 `;
-export const CreateContractPageType = styled(BorderContainer)``;
 export const CreateContractPageLine = styled.div`
 	display: flex;
 	align-items: center;

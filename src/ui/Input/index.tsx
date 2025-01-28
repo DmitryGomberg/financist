@@ -7,6 +7,7 @@ type IUiInputProps = {
    label?: string;
    value: string;
    type?: string;
+   validated?: boolean;
 };
 
 export const UiInput: FC<IUiInputProps> = (props) => {
@@ -17,7 +18,7 @@ export const UiInput: FC<IUiInputProps> = (props) => {
 
    return (
       <UiInputContainer>
-         {props.label && <UiInputLabel>{props.label}</UiInputLabel>}
+         {props.label && <UiInputLabel error={!!(props.validated && !props.value)}>{props.label}</UiInputLabel>}
          <UiInputMain placeholder={props.placeholder} onChange={(e) => handleClick(e.target.value)}
                       value={props.value} type={props.type} />
       </UiInputContainer>

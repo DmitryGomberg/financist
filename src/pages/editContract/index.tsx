@@ -3,7 +3,6 @@ import { EditContractPageContainer, EditContractPageLine } from './styled';
 import { RadioCheckboxWrapper, Title } from '../../styled';
 import { UiButton } from 'ui/Button';
 import { UiInput } from 'ui/Input';
-import { UiInputSum } from 'ui/inputSum';
 import { UiRadio } from 'ui/Radio';
 import { PayConditions } from './payConditions';
 import { EDateType } from 'utils';
@@ -63,7 +62,7 @@ export const EditContractPage: FC = () => {
          <UiInput onChange={(text) => setCustomer(text)} value={customer} label={'Наименование заказчика'}
                   placeholder={'Введите значение'} />
          <EditContractPageLine>
-            <UiInputSum value={sum} onChange={(text) => setSum(text)} label={'Сумма договора'} />
+            <UiInput type={'number'} value={sum} onChange={(text: string) => setSum(text)} label={'Сумма договора'} />
             <UiInput type={'date'} value={date} onChange={(text) => setDate(text)}
                      label={'Дата составления договора'} />
          </EditContractPageLine>

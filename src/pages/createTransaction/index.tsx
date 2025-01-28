@@ -1,9 +1,8 @@
-import { FC, useState } from 'react';
+import {FC, useState} from 'react';
 import { CreateTransactionPageContainer, CreateTransactionPageLine, CreateTransactionPageType } from './styled';
 import { RadioCheckboxWrapper, Subtitle, Title } from '../../styled';
 import { UiRadio } from 'ui/Radio';
 import { UiDropdown } from 'ui/Dropdown';
-import { UiInputSum } from 'ui/inputSum';
 import { UiInput } from 'ui/Input';
 import { UiButton } from 'ui/Button';
 import { ETransactionType } from 'utils';
@@ -21,7 +20,6 @@ export const CreateTransactionPage: FC = () => {
    const handleRadioLess = () => {
       setType(ETransactionType.send);
    };
-   console.log(category);
 
    return (
       <CreateTransactionPageContainer>
@@ -37,7 +35,7 @@ export const CreateTransactionPage: FC = () => {
                      placeholder={'Выберите вариант из списка'} label={'Выберите договор'} />
          <CreateTransactionPageLine>
             <UiInput type={'date'} value={date} onChange={(text) => setDate(text)} label={'Дата'} />
-            <UiInputSum value={sum} onChange={(val) => {
+            <UiInput type={'number'} value={sum} onChange={(val) => {
                setSum(val);
             }} label={'Сумма'} />
             <UiInput onChange={(text) => setDescr(text)} value={descr} label={'Примечание'}

@@ -20,3 +20,10 @@ export const PayConditionsMore = styled.div`
 	cursor: pointer;
 	align-self: flex-start;
 `;
+export const PayConditionsError = styled.div`
+	color: red;
+	padding: 5px 15px;
+    border-radius: 5px;
+	background-color: rgba(255, 0, 0, 0.12);
+	font-size: 14px;
+`;

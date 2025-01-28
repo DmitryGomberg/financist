@@ -9,6 +9,7 @@ export const FilterContainer = styled.div`
 	flex-direction: column;
 	gap: 10px;
 	position: relative;
+	width: 100%;
 
 	& button {
 		position: absolute;
@@ -21,7 +22,7 @@ export const FilterContainer = styled.div`
 export const FilterLine = styled.div`
 	display: flex;
 	align-items: flex-start;
-	gap: 15px;
+	gap: 20px;
 
 	& > div:last-child {
 		flex: 1 1 auto;
@@ -31,7 +32,5 @@ export const FilterBlock = styled.div`
 	display: flex;
 	flex-direction: column;
 	gap: 5px;
-
-
 `;
 export const FilterLabel = styled.div``;

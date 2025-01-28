@@ -4,13 +4,15 @@ import { colors } from 'styles/vars';
 export const UiTableContainer = styled.table`
 	width: 100%;
 	border-collapse: collapse;
+	text-align: center;
 `;
 
 export const UiTableHeader = styled.th`
 	border: 1px solid ${colors.blue};
-	padding: 8px;
+	padding: 3px;
 	background-color: ${colors.accentGreen};
-	text-align: left;
+	font-size: 15px;
+	line-height: 17px;
 `;
 
 export const UiTableRow = styled.tr`
@@ -23,5 +25,8 @@ export const UiTableRow = styled.tr`
 
 export const UiTableCell = styled.td`
 	border: 1px solid ${colors.blue};
-	padding: 8px;
+	padding: 8px 3px;
+	font-size: 15px;
+	line-height: 17px;
+	min-width: 80px;
 `;

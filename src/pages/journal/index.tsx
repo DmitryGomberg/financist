@@ -12,7 +12,7 @@ export const JournalPage: FC = () => {
          <JournalPageHeader>
             <Title>Журнал</Title>
             <UiButton label={'Фильтровать'} onClick={() => {
-               activeFilter ? setActiveFilter(false) : setActiveFilter(true);
+               setActiveFilter(!activeFilter);
             }} />
          </JournalPageHeader>
          {activeFilter && <FilterTransactions />}
