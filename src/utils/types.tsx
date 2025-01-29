@@ -8,6 +8,7 @@ export type IStageTypes = {
    dayType: EDateType;
 };
 export type IContractTypes = {
+   id: number;
    name: string;
    number: string;
    customerName: string;
@@ -18,4 +19,11 @@ export type IContractTypes = {
    deadline: number;
    deadlineType: string;
    payCondition: IStageTypes[];
+}
+export type ITransactionTypes = {
+   type: string,
+   contractId: number,
+   date: string,
+   price: number,
+   description: string,
 }

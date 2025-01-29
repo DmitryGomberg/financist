@@ -5,7 +5,7 @@ import {UiButton} from 'ui/Button';
 import {UiInput} from 'ui/Input';
 import {UiRadio} from 'ui/Radio';
 import {PayConditions, validateNames, validateStages} from './payConditions';
-import {EDateType, IContractTypes, IStageTypes} from 'utils';
+import {EDateType, IContractTypes, IStageTypes, formatDateForMySQL} from 'utils';
 
 export const CreateContractPage: FC = () => {
    let [name, setName] = useState<string>('');
@@ -42,11 +42,10 @@ export const CreateContractPage: FC = () => {
    }
 
    const handleSubmit = async () => {
-      const formatDateForMySQL = (date: Date) => {
-         return date.toISOString().slice(0, 19).replace('T', ' ');
-      };
+
 
       const contractData = {
+         id: Date.now(),
          name: name,
          number: num,
          customerName: customer,

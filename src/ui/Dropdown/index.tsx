@@ -8,23 +8,24 @@ import {
    UiDropdownList,
    UiDropdownMain,
 } from './styled';
+import {IContractTypes} from "../../utils";
 
 type UiDropdownProps = {
-   items: string[];
-   onSelect: (item: string) => void;
+   items: IContractTypes[];
+   onSelect: (item: IContractTypes) => void;
    label?: string;
    placeholder?: string
 };
 
 export const UiDropdown: FC<UiDropdownProps> = (props) => {
    const [isOpen, setIsOpen] = useState(false);
-   const [selectedItem, setSelectedItem] = useState<string | null>(null);
+   const [selectedItem, setSelectedItem] = useState<IContractTypes>();
 
    const toggleDropdown = () => {
       setIsOpen(!isOpen);
    };
 
-   const handleItemClick = (item: string) => {
+   const handleItemClick = (item: IContractTypes) => {
       setSelectedItem(item);
       setIsOpen(false);
       props.onSelect(item);
@@ -35,13 +36,15 @@ export const UiDropdown: FC<UiDropdownProps> = (props) => {
          {props.label && <UiDropdownLabel>{props.label}</UiDropdownLabel>}
          <UiDropdownInner>
             <UiDropdownMain onClick={toggleDropdown} isOpen={isOpen}>
-               {selectedItem || props.placeholder || 'Выберите вариант из списка'}
-               <ArrowDropDown />
+               <>
+                  {selectedItem ? selectedItem.name : props.placeholder || 'Выберите вариант из списка'}
+                  <ArrowDropDown />
+               </>
             </UiDropdownMain>
             <UiDropdownList isOpen={isOpen}>
                {props.items.map((item) => (
-                  <UiDropdownItem key={item} onClick={() => handleItemClick(item)}>
-                     {item}
+                  <UiDropdownItem key={item.id} onClick={() => handleItemClick(item)}>
+                     {item.name}
                   </UiDropdownItem>
                ))}
             </UiDropdownList>

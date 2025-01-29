@@ -1,6 +1,7 @@
-import { FC, useState } from 'react';
-import { Subtitle } from 'styled';
+import {FC, useEffect, useState} from 'react';
+import { IContractTypes } from 'utils';
 import { UiButton, UiCheckbox, UiDropdown, UiInput } from 'ui';
+import { Subtitle } from 'styled';
 import { FilterBlock, FilterContainer, FilterLabel, FilterLine } from '../styled';
 
 export const FilterTransactions: FC = () => {
@@ -8,7 +9,8 @@ export const FilterTransactions: FC = () => {
    let [transactionTypePost, setTransactionTypePost] = useState<boolean>(true);
    let [dateFrom, setDateFrom] = useState('');
    let [dateTo, setDateTo] = useState('');
-   let [category, setCategory] = useState<string>('');
+   let [category, setCategory] = useState<IContractTypes>();
+   const [contracts, setContracts] = useState([]);
 
    const sendRes = () => {
       console.log(
@@ -19,6 +21,29 @@ export const FilterTransactions: FC = () => {
          category,
       );
    };
+
+   useEffect(() => {
+      const fetchContracts = async () => {
+         try {
+            const response = await fetch('http://localhost:4565/contracts', {
+               method: 'GET',
+               headers: {
+                  'Content-Type': 'application/json',
+               }
+            });
+            if (!response.ok) {
+               throw new Error(`Ошибка при получении договоров: ${response.status}`);
+            }
+            const data = await response.json();
+            setContracts(data);
+         } catch (error) {
+            console.error(error);
+         }
+      };
+
+      fetchContracts();
+   }, []);
+
 
    return (
       <FilterContainer>
@@ -48,8 +73,11 @@ export const FilterTransactions: FC = () => {
             </FilterBlock>
             <FilterBlock>
                <FilterLabel>по договору:</FilterLabel>
-               <UiDropdown items={['fsdf', 'dsf']} onSelect={(item) => setCategory(item)}
-                           placeholder={'Выберите вариант из списка'} label={''} />
+               <UiDropdown
+                  items={contracts}
+                  onSelect={(item) => setCategory(item)}
+                  placeholder={'Выберите вариант из списка'} label={''}
+               />
             </FilterBlock>
          </FilterLine>
          <UiButton label={'Применить'} onClick={sendRes} />

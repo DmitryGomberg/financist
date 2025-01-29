@@ -5,14 +5,15 @@ import { UiRadio } from 'ui/Radio';
 import { UiDropdown } from 'ui/Dropdown';
 import { UiInput } from 'ui/Input';
 import { UiButton } from 'ui/Button';
-import { ETransactionType } from '../../utils/enums';
+import {ETransactionType, IContractTypes} from "utils";
 
 export const EditTransactionPage: FC = () => {
    let [type, setType] = useState<ETransactionType>(ETransactionType.get);
-   let [category, setCategory] = useState<string>('');
+   let [category, setCategory] = useState<IContractTypes>();
    let [date, setDate] = useState<string>('');
    let [sum, setSum] = useState<string>('');
    let [descr, setDescr] = useState<string>('');
+   const [contracts, setContracts] = useState([]);
 
    const handleRadioMore = () => {
       setType(ETransactionType.get);
@@ -31,8 +32,13 @@ export const EditTransactionPage: FC = () => {
                <UiRadio label={'Затраты'} checked={type === ETransactionType.send} onChange={handleRadioLess} />
             </RadioCheckboxWrapper>
          </EditTransactionPageType>
-         <UiDropdown items={['fsdf', 'dsf']} onSelect={(item) => setCategory(item)}
-                     placeholder={'Выберите вариант из списка'} label={'Выберите договор'} />
+         <UiDropdown
+            items={contracts}
+            onSelect={(item) => setCategory(item)}
+
+            placeholder={'Выберите вариант из списка'}
+            label={'Выберите договор'}
+         />
          <EditTransactionPageLine>
             <UiInput type={'date'} value={date} onChange={(text) => setDate(text)} label={'Дата'} />
             <UiInput type={'number'} value={sum} onChange={(val) => {

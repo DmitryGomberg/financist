@@ -1,16 +1,21 @@
 import React, { FC } from 'react';
 import { ContractPageOptionsContainer, ContractPageOptionsItem } from './styled';
+import {formatDate, formatPrice, IContractTypes} from "../../../utils";
 
-export const ContractPageOptions: FC = () => {
+type IContractPageOptionsProps = {
+   contract: IContractTypes;
+}
+
+export const ContractPageOptions: FC<IContractPageOptionsProps> = (props) => {
    return (
       <ContractPageOptionsContainer>
-         <ContractPageOptionsItem>Договор №61/mh20</ContractPageOptionsItem>
-         <ContractPageOptionsItem><span>Заказчик: </span>“ОАО РОСКОСМОС ПРОДАКШН”</ContractPageOptionsItem>
-         <ContractPageOptionsItem><span>Сумма договора: </span>150 000 BYN</ContractPageOptionsItem>
-         <ContractPageOptionsItem><span>Срок поставки: </span>90 рабочих дней</ContractPageOptionsItem>
-         <ContractPageOptionsItem><span>Дата составления договора: </span>14.01.2025</ContractPageOptionsItem>
-         <ContractPageOptionsItem><span>Дата подписания договора: </span>не подписан</ContractPageOptionsItem>
-         <ContractPageOptionsItem><span>Дата закрытия договора: </span>не закрыт</ContractPageOptionsItem>
+         <ContractPageOptionsItem>Договор {props.contract.number}</ContractPageOptionsItem>
+         <ContractPageOptionsItem><span>Заказчик: </span>“{props.contract.customerName}”</ContractPageOptionsItem>
+         <ContractPageOptionsItem><span>Сумма договора: </span>{formatPrice(String(props.contract.price))} BYN</ContractPageOptionsItem>
+         <ContractPageOptionsItem><span>Срок поставки: </span>{props.contract.deadline} {props.contract.deadlineType === 'work' ? 'рабочих' : 'календарных'} дней</ContractPageOptionsItem>
+         <ContractPageOptionsItem><span>Дата составления договора: </span>{formatDate(props.contract.dateOfCreate)}</ContractPageOptionsItem>
+         <ContractPageOptionsItem><span>Дата подписания договора: </span>{props.contract.dateOfWrite ? props.contract.dateOfWrite : 'не подписан'}</ContractPageOptionsItem>
+         <ContractPageOptionsItem><span>Дата закрытия договора: </span>{props.contract.dateOfClose ? props.contract.dateOfClose : 'не закрыт'}</ContractPageOptionsItem>
       </ContractPageOptionsContainer>
    );
 };
