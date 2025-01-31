@@ -15,8 +15,9 @@ export const UiTableHeader = styled.th`
 	line-height: 17px;
 `;
 
-export const UiTableRow = styled.tr`
+export const UiTableRow = styled.tr<{clickable?: boolean}>`
 	position: relative;
+	cursor: ${({clickable}) => clickable ? 'pointer' : 'default'};
 
 	&:nth-child(even) {
 		background-color: #f9f9f9;
@@ -29,4 +30,5 @@ export const UiTableCell = styled.td`
 	font-size: 15px;
 	line-height: 17px;
 	min-width: 80px;
+    text-align: center;
 `;

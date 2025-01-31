@@ -25,7 +25,7 @@ export const CreateTransactionPage: FC = () => {
    useEffect(() => {
       const fetchContracts = async () => {
          try {
-            const response = await fetch('http://localhost:4565/contracts', {
+            const response = await fetch('http://localhost:4565/contracts/names', {
                method: 'GET',
                headers: {
                   'Content-Type': 'application/json',
@@ -64,6 +64,22 @@ export const CreateTransactionPage: FC = () => {
       }
    };
 
+   const handleClick = () => {
+      if (!(!category || !date || !sum)){
+         const transaction = {
+            type: type === ETransactionType.get ? 'get' : 'send',
+            contractId: category.id,
+            date: formatDateForMySQL(new Date(date)),
+            price: Number(sum),
+            description: descr,
+         };
+
+         addTransaction(transaction);
+      }else{
+         alert('Заполните обязательные поля')
+      }
+   }
+
    return (
       <CreateTransactionPageContainer>
          <Title>Добавить запись +</Title>
@@ -97,20 +113,7 @@ export const CreateTransactionPage: FC = () => {
                placeholder={'Введите примечание'}
             />
          </CreateTransactionPageLine>
-         <UiButton label={'Создать запись'} onClick={()=>{
-               if(category) {
-                  const transaction = {
-                     type: type === ETransactionType.get ? 'get' : 'send',
-                     contractId: category.id,
-                     date: formatDateForMySQL(new Date(date)),
-                     price: Number(sum),
-                     description: descr,
-                  };
-
-                  addTransaction(transaction);
-               }
-            }
-         }/>
+         <UiButton label={'Создать запись'} onClick={handleClick}/>
       </CreateTransactionPageContainer>
    );
 };

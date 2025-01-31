@@ -7,6 +7,7 @@ type UiTableProps = {
 };
 
 export const UiTable: FC<UiTableProps> = ({ headers, data }) => {
+   if (data.length === 0) return <div>Нет данных</div>;
    return (
       <UiTableContainer>
          <thead>
@@ -17,6 +18,7 @@ export const UiTable: FC<UiTableProps> = ({ headers, data }) => {
          </UiTableRow>
          </thead>
          <tbody>
+
          {data.map((row, rowIndex) => (
             <UiTableRow key={rowIndex}>
                {row.map((cell, cellIndex) => (
