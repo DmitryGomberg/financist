@@ -20,7 +20,7 @@ function App() {
                <Aside />
                <Routes>
                   <Route path="/" element={<CreateTransactionPage />} />
-                  <Route path="/transaction/edit" element={<EditTransactionPage />} />
+                  <Route path="/transaction/:id/edit" element={<EditTransactionPage />} />
                   <Route path="/contracts/create" element={<CreateContractPage />} />
                   <Route path="/contracts/:id/edit" element={<EditContractPage />} />
                   <Route path="/contracts/:id" element={<ContractPage />} />

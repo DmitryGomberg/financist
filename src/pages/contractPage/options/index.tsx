@@ -12,10 +12,11 @@ export const ContractPageOptions: FC<IContractPageOptionsProps> = (props) => {
          <ContractPageOptionsItem>Договор {props.contract.number}</ContractPageOptionsItem>
          <ContractPageOptionsItem><span>Заказчик: </span>“{props.contract.customerName}”</ContractPageOptionsItem>
          <ContractPageOptionsItem><span>Сумма договора: </span>{formatPrice(String(props.contract.price))} BYN</ContractPageOptionsItem>
-         <ContractPageOptionsItem><span>Срок поставки: </span>{props.contract.deadline} {props.contract.deadlineType === 'work' ? 'рабочих' : 'календарных'} дней</ContractPageOptionsItem>
+         <ContractPageOptionsItem><span>Исполнитель: </span>“{props.contract.executorName}”</ContractPageOptionsItem>
+         <ContractPageOptionsItem><span>Срок выполнения работ: </span>{props.contract.deadline} {props.contract.deadlineType === 'work' ? 'рабочих' : 'календарных'} дней</ContractPageOptionsItem>
          <ContractPageOptionsItem><span>Дата составления договора: </span>{formatDate(props.contract.dateOfCreate)}</ContractPageOptionsItem>
-         <ContractPageOptionsItem><span>Дата подписания договора: </span>{props.contract.dateOfWrite ? props.contract.dateOfWrite : 'не подписан'}</ContractPageOptionsItem>
-         <ContractPageOptionsItem><span>Дата закрытия договора: </span>{props.contract.dateOfClose ? props.contract.dateOfClose : 'не закрыт'}</ContractPageOptionsItem>
+         <ContractPageOptionsItem><span>Дата подписания договора: </span>{props.contract.dateOfWrite ? formatDate(props.contract.dateOfWrite) : 'не подписан'}</ContractPageOptionsItem>
+         <ContractPageOptionsItem><span>Дата закрытия договора: </span>{props.contract.dateOfClose ? formatDate(props.contract.dateOfClose) : 'не закрыт'}</ContractPageOptionsItem>
       </ContractPageOptionsContainer>
    );
 };

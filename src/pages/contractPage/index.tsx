@@ -1,10 +1,10 @@
 import { FC, useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { UiButton, UiTable } from 'ui';
-import { Subtitle, Title } from 'styled';
-import { ContractPageContainer, ContractPageHeader } from './styled';
-import { ContractPageOptions } from 'pages/contractPage/options';
-import {formatDate, formatPrice, IStageTypes, ITransactionTypes} from "../../utils";
+import {BorderContainer, Subtitle, Title} from 'styled';
+import { ContractPageOptions } from './options';
+import {formatDate, formatPrice, getFileType, IStageTypes, ITransactionTypes} from 'utils';
+import {ContractPageContainer, ContractPageFile, ContractPageFiles, ContractPageHeader, ContractPageRes, ContractPageResLine} from './styled';
 
 const dayTypeMap = {
    0: 'календарных',
@@ -14,8 +14,17 @@ const dayTypeMap = {
 export const ContractPage: FC = () => {
    const { id } = useParams<{ id: string }>();
    const [contract, setContract] = useState<any>();
-   const [expenses, setExpenses] = useState<any>()
-   const [receipts, setReceipts] = useState<any>()
+   const [expenses, setExpenses] = useState<any>();
+   const [receipts, setReceipts] = useState<any>();
+   const [files, setFiles] = useState<string[]>([]);
+   const navigate = useNavigate();
+
+   const calculateTotal = (transactions: ITransactionTypes[]): number => {
+      return transactions.reduce((total, transaction: ITransactionTypes) => total + parseFloat(String(transaction.price)), 0);
+   };
+   const calculateRemainingBalance = (contractAmount: number, totalExpenses: number): number => {
+      return contractAmount - totalExpenses;
+   };
 
    useEffect(() => {
       const fetchContract = async () => {
@@ -57,9 +66,23 @@ export const ContractPage: FC = () => {
          }
       };
 
+      const fetchFiles = async () => {
+         try {
+            const response = await fetch(`http://localhost:4565/download/${id}`);
+            if (!response.ok) {
+               throw new Error(`Error fetching files: ${response.status}`);
+            }
+            const data = await response.json();
+            setFiles(data.files);
+         } catch (error) {
+            console.error(error);
+         }
+      };
+
       fetchContract();
       fetchExpenses();
       fetchReceipts();
+      fetchFiles();
    }, [id]);
 
    if (!contract) {
@@ -71,30 +94,62 @@ export const ContractPage: FC = () => {
       stage.percent,
       `${stage.time} ${dayTypeMap[stage.dayType]} дней`
    ]) || [];
-   const expensesData = expenses?.map((expense: ITransactionTypes) => [
+   const expensesData = expenses?.sort((a: ITransactionTypes, b: ITransactionTypes) => new Date(b.date).getTime() - new Date(a.date).getTime()).map((expense: ITransactionTypes) => [
       formatDate(expense.date),
       expense.description,
       formatPrice(String(expense.price))
    ]) || [];
-   const receiptsData = receipts?.map((expense: ITransactionTypes) => [
+   const receiptsData = receipts?.sort((a: ITransactionTypes, b: ITransactionTypes) => new Date(b.date).getTime() - new Date(a.date).getTime()).map((expense: ITransactionTypes) => [
       formatDate(expense.date),
       expense.description,
       formatPrice(String(expense.price))
    ]) || [];
 
+   const totalExpenses = calculateTotal(expenses || []);
+   const totalReceipts = calculateTotal(receipts || []);
+
+   const handleEdit = () => {
+      navigate(`${window.location.pathname}/edit`);
+   }
+
    return (
       <ContractPageContainer>
          <ContractPageHeader>
             <Title>{contract.name}</Title>
-            <UiButton label={'Редактировать'} />
+            <UiButton label={'Редактировать'} onClick={handleEdit}/>
          </ContractPageHeader>
-         <ContractPageOptions contract={contract} />
+         <ContractPageOptions contract={contract}/>
          <Subtitle>Этапы оплаты</Subtitle>
          <UiTable headers={['Название', 'Процент от суммы %', 'Срок получения средств']} data={paymentStages} />
-         <Subtitle>Зарегистрированные затраты</Subtitle>
-         <UiTable headers={['Дата', 'Описание', 'Сумма BYN']} data={expensesData} />
-         <Subtitle>Поступления</Subtitle>
-         <UiTable headers={['Дата', 'Описание', 'Сумма BYN']} data={receiptsData} />
+
+         <BorderContainer>
+            <Subtitle>Поступления</Subtitle>
+            <UiTable headers={['Дата', 'Описание', 'Сумма BYN']} data={receiptsData.reverse()}/>
+            <ContractPageRes>
+               <ContractPageResLine>Итого: {formatPrice(String(totalReceipts))} BYN</ContractPageResLine>
+               <ContractPageResLine>Остаток: {formatPrice(String(calculateRemainingBalance(contract.price, totalReceipts)))} BYN</ContractPageResLine>
+            </ContractPageRes>
+         </BorderContainer>
+
+         <BorderContainer>
+            <Subtitle>Зарегистрированные затраты</Subtitle>
+            <UiTable headers={['Дата', 'Описание', 'Сумма BYN']} data={expensesData.reverse()}/>
+            <ContractPageRes>
+               <ContractPageResLine>Итого: {formatPrice(String(totalExpenses))} BYN</ContractPageResLine>
+               <ContractPageResLine>Остаток: {formatPrice(String(calculateRemainingBalance(contract.price, totalExpenses)))} BYN</ContractPageResLine>
+            </ContractPageRes>
+         </BorderContainer>
+
+         {files.length > 0 && <Subtitle>Документы</Subtitle>}
+         <ContractPageFiles>
+            {files.map((file, index) => (
+               <ContractPageFile key={index}>
+                  <span>{getFileType(file)}</span>
+                  {file.substring(37)}
+                  <a href={`http://localhost:4565/uploads/${file}`} download target={'_blank'}>Просмотр</a>
+               </ContractPageFile>
+            ))}
+         </ContractPageFiles>
       </ContractPageContainer>
    );
 };

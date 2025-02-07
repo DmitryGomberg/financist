@@ -18,7 +18,7 @@ export const ContractsPage: FC = () => {
             }
             const data = await response.json();
             setContracts(data);
-            console.log(data);
+            console.log(contracts);
          } catch (error) {
             console.error(error);
          }
@@ -37,7 +37,7 @@ export const ContractsPage: FC = () => {
          </ContractsPageHeader>
          {activeFilter && <FilterContracts />}
          <TableContracts
-            headers={['Название', 'Номер договора', 'Сумма', 'Срок поставки', 'Состояние', 'Дата составления', 'Дата подписания', 'Дата закрытия']}
+            headers={['Название', 'Номер договора', 'Заказчик', 'Сумма', 'Срок выполнения работ', 'Состояние договора', 'Дата подписания', 'Дата закрытия']}
             data={contracts}
          />
       </ContractsPageContainer>

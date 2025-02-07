@@ -23,10 +23,10 @@ export const PayConditionsItem: FC<PayConditionsItemProps> = ({ stage, updateSta
       <PayConditionsItemContainer>
          <UiInput
             type="text"
-            label={'Название этапа'}
+            label={'Условие'}
             value={stage.name}
             onChange={(value) => handleChange('name', value)}
-            placeholder="Название этапа"
+            placeholder="Условие"
             validated={error}
          />
          <UiInput

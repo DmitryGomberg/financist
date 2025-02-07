@@ -15,16 +15,8 @@ export const CreateTransactionPageLine = styled.div`
 	align-items: center;
 	gap: 15px;
 	width: 100%;
-
-	& > div:last-child {
-		flex: 1 1 auto;
-	}
-
-	& > div:first-child {
-		flex: 0 0 120px;
-	}
-
-	& > div:nth-child(2) {
-		flex: 0 0 200px;
-	}
+    
+    &>div{
+        flex: 1 1 auto;
+    }
 `;

@@ -12,6 +12,7 @@ export type IContractTypes = {
    name: string;
    number: string;
    customerName: string;
+   executorName: string;
    price: number;
    dateOfCreate: string;
    dateOfWrite?: string;
@@ -21,9 +22,11 @@ export type IContractTypes = {
    payCondition: IStageTypes[];
 }
 export type ITransactionTypes = {
+   id: number,
    type: string,
    contractId: number,
    date: string,
    price: number,
    description: string,
+   provider: string,
 }

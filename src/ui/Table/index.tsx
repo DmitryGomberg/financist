@@ -22,7 +22,7 @@ export const UiTable: FC<UiTableProps> = ({ headers, data }) => {
          {data.map((row, rowIndex) => (
             <UiTableRow key={rowIndex}>
                {row.map((cell, cellIndex) => (
-                  <UiTableCell key={cellIndex}>{cell}</UiTableCell>
+                  <UiTableCell key={cellIndex}>{cell || '-'}</UiTableCell>
                ))}
             </UiTableRow>
          ))}

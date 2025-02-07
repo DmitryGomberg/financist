@@ -1,3 +1,5 @@
+import {IStageTypes} from "pages/createContract/payConditions";
+
 export const formatDateForMySQL = (date: Date) => {
     return date.toISOString().slice(0, 19).replace('T', ' ');
 };
@@ -13,4 +15,43 @@ export const formatDate = (dateString: string): string => {
     const month = String(date.getMonth() + 1).padStart(2, '0');
     const year = date.getFullYear();
     return `${day}.${month}.${year}`;
+};
+
+export const getFileType = (fileName: string) => {
+    const extension = fileName.split('.').pop()?.toLowerCase();
+    switch (extension) {
+        case 'png':
+        case 'jpg':
+        case 'jpeg':
+        case 'gif':
+            return 'img';
+        case 'pdf':
+            return 'pdf';
+        case 'doc':
+        case 'docx':
+            return 'docx';
+        case 'xls':
+        case 'xlsx':
+            return 'excel';
+        case 'mp4':
+            return 'mp4';
+        default:
+            return 'other';
+    }
+};
+
+export const validateNames = (stages: IStageTypes[]) =>{
+    for (const stage of stages) {
+        if(stage.name === '') {
+            return false
+        }
+    }
+    return true
+}
+export const validateStages = (stages: IStageTypes[]) => {
+    let sumOfPercents = 0;
+    stages.map((stage)=>{
+        sumOfPercents += Number(stage.percent);
+    })
+    return sumOfPercents === 100
 };

@@ -9,8 +9,6 @@ export const FilterTransactions: FC = () => {
    let [transactionTypePost, setTransactionTypePost] = useState<boolean>(true);
    let [dateFrom, setDateFrom] = useState('');
    let [dateTo, setDateTo] = useState('');
-   let [category, setCategory] = useState<IContractTypes>();
-   const [contracts, setContracts] = useState([]);
 
    const sendRes = () => {
       console.log(
@@ -18,32 +16,8 @@ export const FilterTransactions: FC = () => {
          transactionTypePost,
          dateFrom,
          dateTo,
-         category,
       );
    };
-
-   useEffect(() => {
-      const fetchContracts = async () => {
-         try {
-            const response = await fetch('http://localhost:4565/contracts', {
-               method: 'GET',
-               headers: {
-                  'Content-Type': 'application/json',
-               }
-            });
-            if (!response.ok) {
-               throw new Error(`Ошибка при получении договоров: ${response.status}`);
-            }
-            const data = await response.json();
-            setContracts(data);
-         } catch (error) {
-            console.error(error);
-         }
-      };
-
-      fetchContracts();
-   }, []);
-
 
    return (
       <FilterContainer>
@@ -70,14 +44,6 @@ export const FilterTransactions: FC = () => {
                      setDateTo(text);
                   }} value={dateTo} />
                </div>
-            </FilterBlock>
-            <FilterBlock>
-               <FilterLabel>по договору:</FilterLabel>
-               <UiDropdown
-                  items={contracts}
-                  onSelect={(item) => setCategory(item)}
-                  placeholder={'Выберите вариант из списка'} label={''}
-               />
             </FilterBlock>
          </FilterLine>
          <UiButton label={'Применить'} onClick={sendRes} />

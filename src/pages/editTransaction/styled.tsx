@@ -16,15 +16,22 @@ export const EditTransactionPageLine = styled.div`
 	gap: 15px;
 	width: 100%;
 
-	& > div:last-child {
-		flex: 1 1 auto;
-	}
+	& > div {
+	     flex: 1 1 auto;       
+   }
+`;
+export const EditTransactionPageButtons = styled.div`
+	display: flex;
+	width: 100%;
+	justify-content: space-between;
 
-	& > div:first-child {
-		flex: 0 0 120px;
-	}
+	& > button:last-child {
+		background-color: white;
+		border: 1px solid red;
+		color: red;
 
-	& > div:nth-child(2) {
-		flex: 0 0 200px;
+		&:hover {
+			background-color: rgba(255, 0, 0, 0.03);
+		}
 	}
 `;

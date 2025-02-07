@@ -6,13 +6,15 @@ import {UiInput} from 'ui/Input';
 import {UiButton} from 'ui/Button';
 import {CreateTransactionPageContainer, CreateTransactionPageLine, CreateTransactionPageType} from './styled';
 import {RadioCheckboxWrapper, Subtitle, Title} from '../../styled';
+import {useNavigate} from "react-router-dom";
 
 export const CreateTransactionPage: FC = () => {
    let [type, setType] = useState<ETransactionType>(ETransactionType.get);
    let [category, setCategory] = useState<IContractTypes>();
    let [date, setDate] = useState<string>('');
-   let [sum, setSum] = useState<string>('0');
+   let [sum, setSum] = useState<string>('');
    let [descr, setDescr] = useState<string>('');
+   let [provider, setProvider] = useState<string>('');
    const [contracts, setContracts] = useState([]);
 
    const handleRadioMore = () => {
@@ -57,6 +59,8 @@ export const CreateTransactionPage: FC = () => {
          if (!response.ok) {
             throw new Error(`Ошибка при добавлении транзакции: ${response.status}`);
          } else {
+            setSum('');
+            setDescr('');
             alert('Транзакция добавлена');
          }
       } catch (error) {
@@ -67,11 +71,13 @@ export const CreateTransactionPage: FC = () => {
    const handleClick = () => {
       if (!(!category || !date || !sum)){
          const transaction = {
+            id: Date.now(),
             type: type === ETransactionType.get ? 'get' : 'send',
             contractId: category.id,
             date: formatDateForMySQL(new Date(date)),
             price: Number(sum),
             description: descr,
+            provider: provider,
          };
 
          addTransaction(transaction);
@@ -91,7 +97,7 @@ export const CreateTransactionPage: FC = () => {
             </RadioCheckboxWrapper>
          </CreateTransactionPageType>
          <UiDropdown
-            items={contracts}
+            items={contracts.slice().reverse()}
             onSelect={(item) => setCategory(item)}
             placeholder={'Выберите вариант из списка'} label={'Выберите договор'}
          />
@@ -104,13 +110,22 @@ export const CreateTransactionPage: FC = () => {
             <UiInput
                type={'number'}
                value={sum}
+               placeholder={'0'}
                onChange={(val) => setSum(val)}
                label={'Сумма'} />
+         </CreateTransactionPageLine>
+         <CreateTransactionPageLine>
             <UiInput
                onChange={(text) => setDescr(text)}
                value={descr}
                label={'Примечание'}
                placeholder={'Введите примечание'}
+            />
+            <UiInput
+               onChange={(text) => setProvider(text)}
+               value={provider}
+               label={'Поставщик'}
+               placeholder={'Введите поставщика'}
             />
          </CreateTransactionPageLine>
          <UiButton label={'Создать запись'} onClick={handleClick}/>

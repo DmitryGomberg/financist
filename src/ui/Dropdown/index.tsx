@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useState, useEffect } from 'react';
 import { ArrowDropDown } from '@mui/icons-material';
 import {
    UiDropdownContainer,
@@ -15,11 +15,16 @@ type UiDropdownProps = {
    onSelect: (item: IContractTypes) => void;
    label?: string;
    placeholder?: string
+   selectedItem?: IContractTypes;
 };
 
 export const UiDropdown: FC<UiDropdownProps> = (props) => {
    const [isOpen, setIsOpen] = useState(false);
-   const [selectedItem, setSelectedItem] = useState<IContractTypes>();
+   const [selectedItem, setSelectedItem] = useState<IContractTypes | undefined>(props.selectedItem);
+
+   useEffect(() => {
+      setSelectedItem(props.selectedItem);
+   }, [props.selectedItem]);
 
    const toggleDropdown = () => {
       setIsOpen(!isOpen);

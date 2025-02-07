@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import {FC, useEffect, useState} from 'react';
 import { Title } from 'styled';
 import { UiButton } from 'ui/Button';
 import { JournalPageContainer, JournalPageHeader } from './styled';
@@ -7,6 +7,45 @@ import { TableTransactions } from 'components/tableTransactions';
 
 export const JournalPage: FC = () => {
    let [activeFilter, setActiveFilter] = useState(false);
+   const [transactions, setTransactions] = useState([]);
+   const [contracts, setContracts] = useState<any>([]);
+
+   useEffect(() => {
+      const fetchTransactions = async () => {
+         try {
+            const response = await fetch('http://localhost:4565/transactions', {
+               method: 'GET',
+               headers: {
+                  'Content-Type': 'application/json',
+               }
+            });
+            if (!response.ok) {
+               throw new Error(`Ошибка при получении записи: ${response.status}`);
+            }
+            const data = await response.json();
+            setTransactions(data);
+         } catch (error) {
+            console.error(error);
+         }
+      };
+      const fetchContracts = async () => {
+         try {
+            const response = await fetch(`http://localhost:4565/contracts/`);
+            if (!response.ok) {
+               throw new Error(`Error fetching contract: ${response.status}`);
+            }
+            const data = await response.json();
+            setContracts(data);
+            console.log(data);
+         } catch (error) {
+            console.error(error);
+         }
+      };
+
+      fetchContracts();
+      fetchTransactions();
+   }, []);
+
    return (
       <JournalPageContainer>
          <JournalPageHeader>
@@ -16,7 +55,7 @@ export const JournalPage: FC = () => {
             }} />
          </JournalPageHeader>
          {activeFilter && <FilterTransactions />}
-         <TableTransactions />
+         <TableTransactions data={transactions} contracts={contracts} />
       </JournalPageContainer>
    );
 };

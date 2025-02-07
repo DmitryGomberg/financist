@@ -1,10 +1,9 @@
 import React, { FC } from 'react';
-import { EDateType } from 'utils';
+import {EDateType, validateNames, validateStages} from 'utils';
 import { Subtitle } from '../../../styled';
 import { PayConditionsItem } from './item';
-import { PayConditionsContainer, PayConditionsMore, PayConditionsWrapper } from './styled';
 import { Add } from '@mui/icons-material';
-import { PayConditionsError } from './styled';
+import { PayConditionsContainer, PayConditionsMore, PayConditionsWrapper, PayConditionsError  } from './styled';
 
 export type IStageTypes = {
    id: number;
@@ -22,22 +21,7 @@ type PayConditionsProps = {
    error?: boolean
 };
 
-export const validateNames = (stages: IStageTypes[]) =>{
-   for (const stage of stages) {
-      if(stage.name === '') {
-         return false
-      }
-   }
-   return true
-}
-export const validateStages = (stages: IStageTypes[]) => {
-   let sumOfPercents = 0;
-   stages.map((stage)=>{
-      sumOfPercents += Number(stage.percent);
-   })
-   return sumOfPercents === 100
-};
-
+// todo: бывают не в процентах а в цифрах
 export const PayConditions: FC<PayConditionsProps> = ({ stages, addStage, updateStage, deleteStage, error }) => {
    return (
       <PayConditionsContainer>
