@@ -1,13 +1,16 @@
-import {FC, useEffect, useState} from 'react';
-import { Title } from 'styled';
-import { ContractsPageContainer, ContractsPageHeader } from './styled';
-import { FilterContracts, TableContracts} from 'components';
-import { UiButton } from 'ui/Button';
-import {formatDate, formatPrice, IContractTypes} from "../../utils";
+import {FC, useCallback, useEffect, useState} from 'react';
+import {UiButton, UiInput} from 'ui';
+import {FilterContracts, TableContracts} from 'components';
+import {Title} from 'styled';
+import {ContractsPageContainer, ContractsPageHeader, ContractsPageSearch} from './styled';
+import {log} from "node:util";
+import {IContractTypes} from "../../utils";
 
 export const ContractsPage: FC = () => {
    let [activeFilter, setActiveFilter] = useState(false);
-   const [contracts, setContracts] = useState<any>([]);
+   let [searchValue, setSearchValue] = useState('');
+   const [contracts, setContracts] = useState<IContractTypes[]>([]);
+   const [contractsFiltered, setContractsFiltered] = useState<IContractTypes[]>([]);
 
    useEffect(() => {
       const fetchContracts = async () => {
@@ -18,27 +21,56 @@ export const ContractsPage: FC = () => {
             }
             const data = await response.json();
             setContracts(data);
-            console.log(contracts);
+            setContractsFiltered(data); // Initialize filtered contracts with all contracts
          } catch (error) {
             console.error(error);
          }
       };
       fetchContracts();
-   },[]);
+   }, []);
 
+   const handleFilter = (isDrafted?: boolean, isSigned?: boolean, isClosed?: boolean) => {
+      let filtered = contracts;
+
+      if (isDrafted || isSigned || isClosed) {
+         filtered = contracts.filter((contract: IContractTypes) => {
+            return (isDrafted && contract.dateOfCreate)
+               || (isSigned && contract.dateOfWrite)
+               || (isClosed && contract.dateOfClose);
+         });
+      }
+
+      if (searchValue) {
+         filtered = filtered.filter((contract: IContractTypes) => {
+            return (contract.name?.toLowerCase().includes(searchValue.toLowerCase()))
+               || (contract.customerName?.toLowerCase().includes(searchValue.toLowerCase()))
+               || (contract.executorName?.toLowerCase().includes(searchValue.toLowerCase()))
+               || (contract.number?.toLowerCase().includes(searchValue.toLowerCase()));
+         });
+      }
+
+      setContractsFiltered(filtered);
+   };
+
+   useEffect(() => {
+      handleFilter(activeFilter, activeFilter, activeFilter);
+   }, [searchValue, activeFilter, contracts]);
 
    return (
       <ContractsPageContainer>
          <ContractsPageHeader>
             <Title>Договоры</Title>
+            <ContractsPageSearch>
+               <UiInput onChange={(text) => setSearchValue(text)} value={searchValue} placeholder={'Найти...'} />
+            </ContractsPageSearch>
             <UiButton label={'Фильтровать'} onClick={() => {
                setActiveFilter(!activeFilter);
             }} />
          </ContractsPageHeader>
-         {activeFilter && <FilterContracts />}
+         {activeFilter && <FilterContracts handleSubmit={handleFilter} />}
          <TableContracts
-            headers={['Название', 'Номер договора', 'Заказчик', 'Сумма', 'Срок выполнения работ', 'Состояние договора', 'Дата подписания', 'Дата закрытия']}
-            data={contracts}
+            headers={['Название', 'Номер договора', 'Заказчик', 'Исполнитель', 'Сумма', 'Срок выполнения работ', 'Состояние договора', 'Дата подписания', 'Дата закрытия']}
+            data={contractsFiltered}
          />
       </ContractsPageContainer>
    );

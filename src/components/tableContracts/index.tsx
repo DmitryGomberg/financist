@@ -19,6 +19,7 @@ export const TableContracts: FC<ITableContractsProps> = (props) => {
       contract.name,
       contract.number,
       contract.customerName,
+      contract.executorName,
       formatPrice(String(contract.price)),
       `${contract.deadline} ${contract.deadlineType === 'work' ? 'рабочих' : 'календарных'} дней`,
       contract.dateOfClose ? 'закрыт' : contract.dateOfWrite ? 'подписан' : 'создан',
@@ -39,7 +40,7 @@ export const TableContracts: FC<ITableContractsProps> = (props) => {
          </thead>
          <tbody>
          {contractsData.reverse().map((row, rowIndex) => (
-            <UiTableRow key={rowIndex} onClick={() => handleRowClick(row[8] as number)} clickable>
+            <UiTableRow key={rowIndex} onClick={() => handleRowClick(row[9] as number)} clickable>
                {row.slice(0, -1).map((cell, cellIndex) => (
                   <UiTableCell key={cellIndex}>{String(cell)}</UiTableCell>
                ))}

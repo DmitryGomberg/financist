@@ -10,23 +10,18 @@ export const FilterContainer = styled.div`
 	gap: 10px;
 	position: relative;
 	width: 100%;
-
-	& button {
-		position: absolute;
-
-		bottom: 10px;
-		right: 20px;
-		align-self: flex-end;
-	}
 `;
 export const FilterLine = styled.div`
 	display: flex;
 	align-items: flex-start;
+    flex-wrap: wrap;
 	gap: 20px;
 
-	& > div:last-child {
-		flex: 1 1 auto;
-	}
+    & button{
+        align-self: flex-end;
+        justify-self: flex-end;
+        margin-left: auto
+    }
 `;
 export const FilterBlock = styled.div`
 	display: flex;
@@ -34,3 +29,12 @@ export const FilterBlock = styled.div`
 	gap: 5px;
 `;
 export const FilterLabel = styled.div``;
+
+export const FilterBlockDate = styled.div`
+   display: flex;
+   align-items: center;
+   gap: 10px;
+    &>div{
+        max-width: 150px;
+    }
+`;

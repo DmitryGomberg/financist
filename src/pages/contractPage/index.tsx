@@ -124,7 +124,7 @@ export const ContractPage: FC = () => {
 
          <BorderContainer>
             <Subtitle>Поступления</Subtitle>
-            <UiTable headers={['Дата', 'Описание', 'Сумма BYN']} data={receiptsData.reverse()}/>
+            <UiTable headers={['Дата', 'Описание', 'Сумма BYN']} data={receiptsData}/>
             <ContractPageRes>
                <ContractPageResLine>Итого: {formatPrice(String(totalReceipts))} BYN</ContractPageResLine>
                <ContractPageResLine>Остаток: {formatPrice(String(calculateRemainingBalance(contract.price, totalReceipts)))} BYN</ContractPageResLine>
@@ -133,7 +133,7 @@ export const ContractPage: FC = () => {
 
          <BorderContainer>
             <Subtitle>Зарегистрированные затраты</Subtitle>
-            <UiTable headers={['Дата', 'Описание', 'Сумма BYN']} data={expensesData.reverse()}/>
+            <UiTable headers={['Дата', 'Описание', 'Сумма BYN']} data={expensesData}/>
             <ContractPageRes>
                <ContractPageResLine>Итого: {formatPrice(String(totalExpenses))} BYN</ContractPageResLine>
                <ContractPageResLine>Остаток: {formatPrice(String(calculateRemainingBalance(contract.price, totalExpenses)))} BYN</ContractPageResLine>

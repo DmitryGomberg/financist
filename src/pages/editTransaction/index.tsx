@@ -85,10 +85,6 @@ export const EditTransactionPage: FC = () => {
          alert('Введите корректную сумму');
          return false;
       }
-      if (!descr) {
-         alert('Введите примечание');
-         return false;
-      }
       return true;
    };
 

@@ -9,7 +9,14 @@ export const ContractsPageContainer = styled.div`
 `;
 export const ContractsPageHeader = styled.div`
 	display: flex;
-	align-items: flex-start;
+	align-items: center;
 	justify-content: space-between;
+    gap: 20px;
 	align-self: stretch;
+`;
+export const ContractsPageSearch = styled.div`
+    display: flex;
+   align-items: center;
+   gap: 10px;
+    flex: 1 1 auto;
 `;

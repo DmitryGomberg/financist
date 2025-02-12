@@ -1,10 +1,12 @@
-import {FC, useEffect, useState} from 'react';
-import { IContractTypes } from 'utils';
-import { UiButton, UiCheckbox, UiDropdown, UiInput } from 'ui';
+import {FC, useState} from 'react';
+import { UiButton, UiCheckbox, UiInput } from 'ui';
 import { Subtitle } from 'styled';
-import { FilterBlock, FilterContainer, FilterLabel, FilterLine } from '../styled';
+import {FilterBlock, FilterBlockDate, FilterContainer, FilterLabel, FilterLine} from '../styled';
 
-export const FilterTransactions: FC = () => {
+type IFilterTransactionsProps = {
+   handleSubmit: (transactionTypeGet: boolean, transactionTypePost: boolean, dateFrom: string, dateTo: string) => void;
+}
+export const FilterTransactions: FC<IFilterTransactionsProps> = (props) => {
    let [transactionTypeGet, setTransactionTypeGet] = useState<boolean>(true);
    let [transactionTypePost, setTransactionTypePost] = useState<boolean>(true);
    let [dateFrom, setDateFrom] = useState('');
@@ -17,6 +19,7 @@ export const FilterTransactions: FC = () => {
          dateFrom,
          dateTo,
       );
+     props.handleSubmit(transactionTypeGet, transactionTypePost, dateFrom, dateTo);
    };
 
    return (
@@ -32,21 +35,19 @@ export const FilterTransactions: FC = () => {
             </FilterBlock>
             <FilterBlock>
                <FilterLabel>по времени:</FilterLabel>
-               <div>
+               <FilterBlockDate>
                   с
                   <UiInput type={'date'} label={''} onChange={(text) => {
                      setDateFrom(text);
                   }} value={dateFrom} />
-               </div>
-               <div>
                   по
                   <UiInput type={'date'} label={''} onChange={(text: string) => {
                      setDateTo(text);
                   }} value={dateTo} />
-               </div>
+               </FilterBlockDate>
             </FilterBlock>
+            <UiButton label={'Применить'} onClick={sendRes} />
          </FilterLine>
-         <UiButton label={'Применить'} onClick={sendRes} />
       </FilterContainer>
    );
 };

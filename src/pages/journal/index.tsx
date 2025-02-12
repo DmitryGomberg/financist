@@ -8,6 +8,7 @@ import { TableTransactions } from 'components/tableTransactions';
 export const JournalPage: FC = () => {
    let [activeFilter, setActiveFilter] = useState(false);
    const [transactions, setTransactions] = useState([]);
+   const [transactionsFiltered, setTransactionsFiltered] = useState([]);
    const [contracts, setContracts] = useState<any>([]);
 
    useEffect(() => {
@@ -46,6 +47,28 @@ export const JournalPage: FC = () => {
       fetchTransactions();
    }, []);
 
+   const handleFilter = (transactionTypeGet: boolean, transactionTypePost: boolean, dateFrom: string, dateTo: string) => {
+      const filtered = transactions.filter((transaction: any) => {
+         const transactionDate = new Date(transaction.date);
+         const fromDate = dateFrom ? new Date(dateFrom) : null;
+         const toDate = dateTo ? new Date(dateTo) : null;
+
+         if (fromDate) {
+            fromDate.setHours(fromDate.getHours() - 3);
+         }
+         if (toDate) {
+            toDate.setHours(toDate.getHours() - 3);
+         }
+
+         const isTypeMatch = (transactionTypeGet && transaction.type === 'get') || (transactionTypePost && transaction.type === 'send');
+         const isDateMatch = (!fromDate || transactionDate >= fromDate) && (!toDate || transactionDate <= toDate);
+
+         return isTypeMatch && isDateMatch;
+      });
+
+      setTransactionsFiltered(filtered);
+   };
+
    return (
       <JournalPageContainer>
          <JournalPageHeader>
@@ -54,8 +77,8 @@ export const JournalPage: FC = () => {
                setActiveFilter(!activeFilter);
             }} />
          </JournalPageHeader>
-         {activeFilter && <FilterTransactions />}
-         <TableTransactions data={transactions} contracts={contracts} />
+         {activeFilter && <FilterTransactions handleSubmit={handleFilter}/>}
+         <TableTransactions data={activeFilter ? transactionsFiltered : transactions} contracts={contracts} />
       </JournalPageContainer>
    );
 };

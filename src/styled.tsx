@@ -19,7 +19,7 @@ export const AppMain = styled(Container)`
 	flex: 1 1 auto;
 
 	& > div:last-child {
-		padding: 30px 15px;
+		padding: 30px;
 	}
 `;
 export const Title = styled.h1`
